@@ -1,0 +1,151 @@
+################################################################################################
+#   Configuration file for jox v1.0 Slices
+#   REDIS key: jox-slice-SLICENAME
+#
+#   "author 1": "Kostas Katsalis",
+#   "email": "kostas.katsalis@eurecom.fr"
+#   "author 2": "Navid Nikaein",
+#   "email": "navid.nikaein@eurecom.fr"
+#      
+#   Services used by the Slice  
+#   "service": "oai-hss",
+#   "charm_name": "cs:~navid-nikaein/trusty/oai-hss-13"
+#   "service": "oai-epc",
+#   "charm_name": "cs:~navid-nikaein/trusty/oai-epc-25"
+#   "service": "oai-enb",
+#   "charm_name": "cs:~navid-nikaein/trusty/oai-enb-18"
+#   "service": "oai-rrh",
+#   "charm_name": "cs:~navid-nikaein/trusty/oai-rrh-10"
+#   "service": "mysql",
+#   "charm_name": "cs:trusty/mysql-55"
+################################################################################################
+
+{
+  "jox-slice-template-version": 1,
+  "jox-template-date": "2016-23-07",
+  "juju-version": 1.25,
+  "description": "Simple template to deploy a single slice in jox",
+  
+  "slice-name": "katsalis_slice1",
+  "external-slice-name": "katsalis_slice",
+  "slice-owner": "Katsalis",
+
+  "stacks-list": [
+    {
+      "stack-name": "local-stack",
+      "stack-cloud": "local",
+
+      "kvm-machines-list": [
+       {
+          "machine-type": "kvm.small.1",
+          "stack-machine-name": "k22",
+          "series": "",
+          "machine-spec": "",
+          "container-type": "kvm",
+          "parent-id": "",
+          "constraints": {}
+        },
+        {
+          "machine-type": "kvm.new",
+          "stack-machine-name": "k262",
+          "series": "",
+          "machine-spec": "",
+          "container-type": "kvm",
+          "parent-id": "",
+          "constraints": {
+            "cpu-cores": 1, 
+            "cpu-power": 1,
+            "mem": 1,
+            "storage": 1
+          }
+        }
+      ],
+      "lxc-machines-list": [
+       {}
+       ],
+      
+      "services-list": [
+        {
+          "stack-service-name": "first-mysql",  
+          "description": "add description",
+          "charm": "cs:trusty/mysql-55",
+          "max-units": 4,
+          "initial-deployment":{
+          	"config":{},
+            "units-number": 1,
+            "stack-machine-name": "lk2",
+             "constraints": {
+                   "cpu-cores": 1, 
+                   "cpu-power": 1,
+                   "mem": 1,
+                   "storage": 1
+                  }
+                }
+          "units-in-kvm-machines-list": [
+          {
+              "units-number": 1,
+              "machine-to-deploy": "new",
+              "machine": {
+                "machine-type": "kvm.new",
+                "stack-machine-name": "lk2",
+                "series": "",
+                "machine-spec": "",
+                "container-type": "kvm",
+                "parent-id": "",
+                "constraints": {
+                   "cpu-cores": 1, 
+                   "cpu-power": 1,
+                   "mem": 1,
+                   "storage": 1
+                  }
+                }
+              }
+          ]
+        },
+        {
+          "service-name": "oai-epc",
+          "stack-service-name": "first-oai-epc",  
+          "description": "add description",
+          "charm-name": "cs:~navid-nikaein/trusty/oai-epc-25",
+          "max-units": 4,
+          "units-in-kvm-machines-list": [
+          {
+              "units-number": 1,
+              "machine-to-deploy": "existing",
+              "machine": {
+                "stack-machine-name": "k1"
+               }
+            }
+          ]
+        },
+        {
+          "service-name": "oai-epc",
+          "stack-service-name": "second-oai-epc",  
+          "description": "add description",
+          "charm-name": "cs:~navid-nikaein/trusty/oai-epc-25",
+          "max-units": 4,
+          "units-in-kvm-machines-list": [
+          {
+              "units-number": 1,
+              "machine-to-deploy": "random",
+              "config": "",
+            }
+          ]
+        }
+      ],
+      "service-relations": {
+        "description": "Type of instance (flavor) to be used",
+        "service-relations-list": [
+          {
+            "service_p": "first-mysql",
+            "service_r": "first-oai-hss"
+          }
+        ]
+      },
+      "service-chains": {
+        "description": "Type of instance (flavor) to be used",
+        "service-chains-list": null
+      }
+    }
+  ]
+}

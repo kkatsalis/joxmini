@@ -1,0 +1,116 @@
+{
+# Jorch Versions
+  "jorch version": 1,
+  "date": "2016-23-07",
+  "juju_version": 1.25,
+  "description": "jorch configuration file",
+
+# Authors  
+  "authors-list": [
+    {
+      "author": 1,
+      "name": "Kostas Katsalis",
+      "email": "kostas.katsalis@eurecom.fr"
+    },
+    {
+      "author": 2,
+      "name": "Navid Nikaein",
+      "email": "navid.nikaein@eurecom.fr"
+    }
+  ],
+  
+  "logfile": "/tmp/jox.log",    
+  "default-slice-config": "Config/default_slice_config.json",
+  "qemu-path": "qemu:///system",
+  "kvm-user": "babylone-local-machine",
+
+# Flask Configuration
+  "flask-port": 5004,
+  "flask-server": "localhost",
+
+# Redis Configuration
+  "redis-server": "localhost",
+  "redis-port": 6379,
+  "auth-user": "root",
+  "auth-passwd": "my secret password",
+  "config-key": "jox_config",
+    
+
+# Charms Repositories
+  "charm dir": [
+    {
+      "item": {
+        "type": "local",
+        "charm_dir": "~/charmstore",
+        "charm_name": "charmstore",
+        "series": "trusty"
+      }
+    },
+    {
+      "item": {
+        "type": "local",
+        "charm_dir": "~/charmstore2",
+        "charm_name": "charmstore2",
+        "series": "trusty"
+      }
+    }
+  ],
+ # Logging 
+  "log-level": "debug",
+  "log_colors": [
+    {
+      "name": "error",
+      "color": "\\033[91m",
+      "debug_level": 0
+    },
+    {
+      "name": "warn",
+      "color": "\\033[93m",
+      "debug_level": 1
+    },
+    {
+      "name": "notice",
+      "color": "\\033[92m",
+      "debug_level": 2
+    },
+    {
+      "name": "info",
+      "color": "\\033[0m",
+      "debug_level": 3
+    },
+    {
+      "name": "debug",
+      "color": "\\033[0m",
+      "debug_level": 4
+    }
+  ],
+ # Available Infrastructures 
+  "clouds-list": [
+    {
+      "juju-cloud": "local",
+      "description": "local environment accordig to ~/.juju/environments.yaml file"
+    }
+  ],
+ # Available machine types 
+  "kvm-machines-types": [
+     {
+        "machine-type": "small.1",
+        "constraints": {
+          "cpu-cores": 1,
+          "cpu-power": 1,
+          "mem": 1,
+          "storage": 8
+        }
+      },
+      {
+        "machine-type": "small.2",
+        "constraints": {
+          "cpu-cores": 2,
+          "cpu-power": 2,
+          "mem": 2,
+          "storage": 10
+        }
+      }
+   ]
+
+}

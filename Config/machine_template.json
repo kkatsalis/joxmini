@@ -1,0 +1,29 @@
+
+{
+	"kvm-machines-list": [
+        {
+          "machine-type": "kvm.new",
+          "stack-machine-name": "k262",
+          "series": "",
+          "machine-spec": "",
+          "container-type": "",
+          "parent-id": "",
+          "constraints": {
+            "cpu-cores": 1, 
+            "cpu-power": 1,
+            "mem": 1,
+            "storage": 1
+          }
+        }
+      ]
+	
+}
+
+
+{
+ "m1": "215" 
+}
+
+{
+	"m1": "218/kvm/0"
+}

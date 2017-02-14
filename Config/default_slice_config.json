@@ -1,0 +1,67 @@
+{
+  "jox-slice-template-version": 1,
+  "jox-template-date": "2016-23-07",
+  "juju-version": 1.25,
+  "description": "Simple template to deploy a single slice in jox",
+  
+  "slice-name": "default-slice",
+  "external-slice-name": "",
+  "slice-owner": "jox",
+
+  "stacks-list": [
+    {
+      "stack-name": "default-stack",
+      "stack-cloud": "local",
+      "machines-list": [
+      {
+          "machine-type": "kvm",
+          "machine-template": "small.1",
+          "machine-name": "jk22",
+          "series": "trusty",
+          "container-type": "",
+          "parent-machine-name": "",
+          "constraints": {}
+        },
+        {
+          "machine-type": "lxc",
+          "machine-template": "",
+          "machine-name": "jk33",
+          "series": "trusty",
+          "container-type": "",
+          "parent-machine-name": "jk22",
+          "constraints": {}
+        }  
+       ],
+      "services-list": [
+      {
+          "stack-service-name": "test-mysql",  
+          "description": "add description",
+          "charm": "cs:trusty/mysql-55",
+          "max-units": 4,
+          "initial-deployment":{
+          	"config":{},
+            "units-number": 1,
+            "machine-type": "lxc",
+            "stack-machine-name": "jk33",
+             "constraints": {}
+                },
+            "units-in-kvm-machines-list": []
+                
+                
+       }
+      
+      
+      
+      
+      ],
+      "service-relations": {
+        "description": "Type of instance (flavor) to be used",
+        "service-relations-list": []
+      },
+      "service-chains": {
+        "description": "Type of instance (flavor) to be used",
+        "service-chains-list": []
+      }
+    }
+  ]
+}

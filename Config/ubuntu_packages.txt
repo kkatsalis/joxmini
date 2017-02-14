@@ -1,0 +1,16 @@
+#  python pip: sudo apt install python-pip
+#  Web-API: Python Flask : sudo pip install Flask
+#  commentjson : sudo pip install commentjson
+#  Serializer jsonpickle: sudo pip install jsonpickle
+#  sudo apt-get install python-libvirt
+#  sudo apt-get install python-jujuclient
+#  sudo apt-get install redis-server
+#  sudo pip install redis
+#  sudo apt-get install libvirt-bin libvirt-doc
+#  sudo apt-get install libssl-dev
+#  sudo yum install openssl-devel  
+#  sudo apt-get install python-dev libxml2-dev libxslt-dev
+#  pip install kvm
+#  REDIS key: jorch-config
+
+# Events Library:  https://github.com/nicolaiarocci/events: pip install events

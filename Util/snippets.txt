@@ -1,0 +1,5 @@
+     x=', '.join(map(str, machines_added))
+        message={'Machines Failed to add': machines_not_added, 'Machines added':x}
+        
+        
+        
